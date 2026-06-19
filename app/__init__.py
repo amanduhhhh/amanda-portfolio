@@ -5,6 +5,19 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
+hobbies_list = [
+    {
+        "name": "Whittling",
+        "description": "Recently got started whittling. Here's a silly cat I made!",
+        "images": ["img/whittling_1.jpg", "img/whittling_2.jpg"],
+    },
+    {
+        "name": "Drawing",
+        "description": "I've been drawing for ~10 years! Some fanart for games I like:",
+        "images": ["img/art_1.jpg", "img/art_2.jpg"],
+    },
+]
+
 pages = [
     {"name": "Home", "endpoint": "index"},
     {"name": "Hobbies", "endpoint": "hobbies"},
@@ -24,4 +37,9 @@ def index():
 
 @app.route('/hobbies')
 def hobbies():
-    return render_template('hobbies.html', title="Hobbies", url=os.getenv("URL"))
+    return render_template(
+        'hobbies.html',
+        title="Hobbies",
+        url=os.getenv("URL"),
+        hobbies=hobbies_list,
+    )
