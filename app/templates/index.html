@@ -22,5 +22,32 @@
             {% endfor %}
         </ul>
     </section>
+
+    <section class="experience">
+        <h2>Experience</h2>
+        {% for job in experiences %}
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-role">{{ job.role }}</span>
+                <span class="entry-dates">{{ job.dates }}</span>
+            </div>
+            <div class="entry-org">{{ job.org }}</div>
+            <p class="entry-description">{{ job.description }}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section class="education">
+        <h2>Education</h2>
+        {% for school in education %}
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-role">{{ school.program }}</span>
+                {% if school.dates %}<span class="entry-dates">{{ school.dates }}</span>{% endif %}
+            </div>
+            <div class="entry-org">{{ school.school }}</div>
+        </div>
+        {% endfor %}
+    </section>
 </main>
 {% endblock %}

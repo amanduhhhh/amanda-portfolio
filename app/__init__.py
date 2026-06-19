@@ -24,6 +24,53 @@ current_work = [
     "amongst other things.",
 ]
 
+experiences = [
+    {
+        "role": "Production Engineering",
+        "org": "Meta & Major League Hacking",
+        "dates": "Jun 2026 – Present",
+        "description": "Building and operating full-stack projects through the MLH Production Engineering Fellowship.",
+    },
+    {
+        "role": "ML Engineering",
+        "org": "AI4Good Lab",
+        "dates": "Apr 2026 – Present",
+        "description": "Created Sensa, a pregnancy and period tracker designed for individuals with low vision.",
+    },
+    {
+        "role": "Frontend Developer",
+        "org": "Hack the North",
+        "dates": "Feb 2026 – Present",
+        "description": "Developing hackthenorth.com and museum.hackthenorth.com.",
+    },
+    {
+        "role": "Software Developer",
+        "org": "UW Blueprint",
+        "dates": "Jan 2026 – May 2026",
+        "description": "Built software for the Oakville and Milton Humane Society.",
+    },
+    {
+        "role": "Develop at Ubisoft Mentee",
+        "org": "Ubisoft",
+        "dates": "Oct 2025 – May 2026",
+        "description": "Developing a game under industry mentorship, working in C++ and algorithms.",
+    },
+    {
+        "role": "Software Engineer",
+        "org": "Oak Ridges Heart Clinic",
+        "dates": "May 2025 – Jan 2026",
+        "description": "Built an AI clinic scribe, a full-stack patient portal, and a cross-platform mobile app.",
+    },
+]
+
+education = [
+    {
+        "program": "BCS, Computer Science (Co-op)",
+        "school": "University of Waterloo",
+        "dates": "Expected 2029",
+    },
+]
+
 pages = [
     {"name": "Home", "endpoint": "index"},
     {"name": "Hobbies", "endpoint": "hobbies"},
@@ -44,6 +91,8 @@ def index():
         url=os.getenv("URL"),
         about_paragraphs=about_paragraphs,
         current_work=current_work,
+        experiences=experiences,
+        education=education,
     )
 
 
