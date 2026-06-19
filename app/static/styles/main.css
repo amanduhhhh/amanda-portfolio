@@ -95,10 +95,98 @@ body {
     height: 200px;
 }
 
+.container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .hobbies-page {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.about h2 {
+    color: #1d539f;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.about h3 {
+    color: #1d539f;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 32px;
+}
+
+.about p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.about .current-work {
+    padding-left: 20px;
+}
+
+.about .current-work li {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.experience h2,
+.education h2 {
+    color: #1d539f;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+}
+
+.entry {
+    background-color: #ffffff;
+    border-left: 4px solid #1d539f;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.entry-role {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1d539f;
+}
+
+.entry-dates {
+    font-size: 14px;
+    color: #777;
+}
+
+.entry-org {
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    margin-top: 2px;
+}
+
+.entry-description {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333;
+    margin: 8px 0 0 0;
 }
 
 .hobbies-title {
