@@ -7,4 +7,20 @@
     </div>
     <h1>{{ title }}</h1>
 </div>
+
+<main class="container">
+    <section class="about">
+        <h2>About Me</h2>
+        {% for paragraph in about_paragraphs %}
+        <p>{{ paragraph }}</p>
+        {% endfor %}
+
+        <h3>What I've been up to</h3>
+        <ul class="current-work">
+            {% for item in current_work %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
 {% endblock %}
