@@ -15,8 +15,9 @@ about_paragraphs = [
 ]
 
 current_work = [
-    "Currently a platform developer for Hack The North!",
-    "Completing a Ubisoft mentorship, where I'll be developing a game under industry leadership.",
+    "Starting a SWE internship @ Shopify this fall!",
+    "Currently a platform developer for Hack The North.",
+    "Completed a Ubisoft mentorship, where I'll be developing a game under industry leadership.",
     "Served as Waterloo's Campus Crusade for Cheese president. I've since committed to "
     "sampling one new cheese every week. Saint Albray's is a recent favourite.",
     "From May–December 2025, completed a software internship at Oak Ridges Heart Centre, "
