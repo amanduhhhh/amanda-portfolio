@@ -85,9 +85,22 @@ hobbies_list = [
     },
 ]
 
+locations = [
+    {"name": "Toronto, ON", "lat": 43.6532, "lng": -79.3832},
+    {"name": "Waterloo, ON", "lat": 43.4643, "lng": -80.5204},
+    {"name": "Montreal, QC", "lat": 45.5019, "lng": -73.5674},
+    {"name": "New York City, NY", "lat": 40.7128, "lng": -74.0060},
+    {"name": "Los Angeles, CA", "lat": 34.0522, "lng": -118.2437},
+    {"name": "Charlottetown, PEI", "lat": 46.2382, "lng": -63.1311},
+    {"name": "Halifax, NS", "lat": 44.6488, "lng": -63.5752},
+    {"name": "Fredericton, NB", "lat": 45.9636, "lng": -66.6431},
+    {"name": "Beijing, China", "lat": 39.9042, "lng": 116.4074},
+]
+
 pages = [
     {"name": "Home", "endpoint": "index"},
     {"name": "Hobbies", "endpoint": "hobbies"},
+    {"name": "Travel", "endpoint": "travel"},
 ]
 
 
@@ -117,4 +130,14 @@ def hobbies():
         title="Hobbies",
         url=os.getenv("URL"),
         hobbies=hobbies_list,
+    )
+
+
+@app.route('/travel')
+def travel():
+    return render_template(
+        'travel.html',
+        title="Travel",
+        url=os.getenv("URL"),
+        locations=locations,
     )
