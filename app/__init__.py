@@ -129,6 +129,7 @@ pages = [
     {"name": "Home", "endpoint": "index"},
     {"name": "Hobbies", "endpoint": "hobbies"},
     {"name": "Travel", "endpoint": "travel"},
+    {"name": "Timeline", "endpoint": "timeline"},
 ]
 
 
@@ -169,6 +170,11 @@ def travel():
         url=os.getenv("URL"),
         locations=locations,
     )
+
+
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', title="Timeline", url=os.getenv("URL"))
 
 
 @app.route('/api/timeline_post', methods=['POST'])

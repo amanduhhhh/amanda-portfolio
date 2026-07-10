@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="timeline-page">
+    <h2 class="timeline-title">Timeline</h2>
+
+    <form id="timeline-form" class="timeline-form">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="content" placeholder="What's on your mind?" required></textarea>
+        <button type="submit">Post</button>
+    </form>
+
+    <div id="timeline-posts" class="timeline-posts"></div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const form = document.getElementById('timeline-form');
+    const postsEl = document.getElementById('timeline-posts');
+
+    // gravatar uses a hash of the (trimmed, lowercased) email.
+    // browsers can do sha-256 natively, and gravatar accepts sha-256 hashes.
+    async function gravatarUrl(email) {
+        const clean = email.trim().toLowerCase();
+        const bytes = new TextEncoder().encode(clean);
+        const digest = await crypto.subtle.digest('SHA-256', bytes);
+        const hash = Array.from(new Uint8Array(digest))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+        return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+    }
+
+    async function renderPost(post) {
+        const avatar = await gravatarUrl(post.email);
+        const el = document.createElement('div');
+        el.className = 'timeline-post';
+        el.innerHTML = `
+            <img class="timeline-avatar" src="${avatar}" alt="${post.name}">
+            <div class="timeline-body">
+                <div class="timeline-meta">
+                    <span class="timeline-name">${post.name}</span>
+                    <span class="timeline-date">${post.created_at}</span>
+                </div>
+                <p class="timeline-content"></p>
+            </div>
+        `;
+        // set text content separately so user input can't inject html
+        el.querySelector('.timeline-content').textContent = post.content;
+        return el;
+    }
+
+    async function loadPosts() {
+        const res = await fetch('/api/timeline_post');
+        const data = await res.json();
+        postsEl.innerHTML = '';
+        // the api already returns posts newest-first
+        for (const post of data.timeline_posts) {
+            postsEl.appendChild(await renderPost(post));
+        }
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await fetch('/api/timeline_post', {
+            method: 'POST',
+            body: new URLSearchParams(new FormData(form))
+        });
+        form.reset();
+        loadPosts();
+    });
+
+    loadPosts();
+</script>
+{% endblock %}

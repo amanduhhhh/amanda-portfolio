@@ -113,6 +113,92 @@ body {
     padding: 0 20px;
 }
 
+.timeline-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.timeline-title {
+    color: #1d539f;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.timeline-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.timeline-form input,
+.timeline-form textarea {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.timeline-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.timeline-form button {
+    align-self: flex-start;
+    background: #1d539f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.timeline-form button:hover {
+    background: #16407a;
+}
+
+.timeline-post {
+    display: flex;
+    gap: 12px;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+}
+
+.timeline-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.timeline-meta {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.timeline-name {
+    font-weight: 700;
+    color: #1d539f;
+}
+
+.timeline-date {
+    font-size: 13px;
+    color: #888;
+}
+
+.timeline-content {
+    margin: 0;
+    color: #333;
+    line-height: 1.5;
+}
+
 .about h2 {
     color: #1d539f;
     font-size: 32px;
