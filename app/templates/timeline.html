@@ -22,14 +22,23 @@
 
     // gravatar uses a hash of the (trimmed, lowercased) email.
     // browsers can do sha-256 natively, and gravatar accepts sha-256 hashes.
+    // note: crypto.subtle only exists in a secure context (https or localhost),
+    // so fall back to a default avatar when it isn't available (e.g. http deploy).
     async function gravatarUrl(email) {
-        const clean = email.trim().toLowerCase();
-        const bytes = new TextEncoder().encode(clean);
-        const digest = await crypto.subtle.digest('SHA-256', bytes);
-        const hash = Array.from(new Uint8Array(digest))
-            .map(b => b.toString(16).padStart(2, '0'))
-            .join('');
-        return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+        try {
+            if (window.crypto && crypto.subtle) {
+                const clean = email.trim().toLowerCase();
+                const bytes = new TextEncoder().encode(clean);
+                const digest = await crypto.subtle.digest('SHA-256', bytes);
+                const hash = Array.from(new Uint8Array(digest))
+                    .map(b => b.toString(16).padStart(2, '0'))
+                    .join('');
+                return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+            }
+        } catch (e) {
+            /* fall through to default avatar */
+        }
+        return 'https://www.gravatar.com/avatar/?d=identicon';
     }
 
     async function renderPost(post) {
@@ -52,12 +61,16 @@
     }
 
     async function loadPosts() {
-        const res = await fetch('/api/timeline_post');
-        const data = await res.json();
-        postsEl.innerHTML = '';
-        // the api already returns posts newest-first
-        for (const post of data.timeline_posts) {
-            postsEl.appendChild(await renderPost(post));
+        try {
+            const res = await fetch('/api/timeline_post');
+            const data = await res.json();
+            postsEl.innerHTML = '';
+            // the api already returns posts newest-first
+            for (const post of data.timeline_posts) {
+                postsEl.appendChild(await renderPost(post));
+            }
+        } catch (e) {
+            console.error('failed to load timeline posts', e);
         }
     }
 
