@@ -20,6 +20,7 @@ print(mydb)
 
 
 class TimelinePost(Model):
+    id = AutoField()
     name = CharField()
     email = CharField()
     content = TextField()
@@ -188,3 +189,11 @@ def get_time_line_post():
             for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
+
+
+@app.route('/api/timeline_post/<int:post_id>', methods=['DELETE'])
+def delete_time_line_post(post_id):
+    deleted = TimelinePost.delete().where(TimelinePost.id == post_id).execute()
+    if deleted:
+        return {'deleted': post_id}
+    return {'error': 'Timeline post not found'}, 404
