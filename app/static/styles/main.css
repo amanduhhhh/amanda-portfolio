@@ -162,6 +162,16 @@ body {
     background: #16407a;
 }
 
+.timeline-error {
+    margin: 0 0 20px;
+    padding: 10px 14px;
+    background: #fdecea;
+    color: #a12622;
+    border: 1px solid #f5c2c0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
 .timeline-post {
     display: flex;
     gap: 12px;

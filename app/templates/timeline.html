@@ -11,6 +11,8 @@
         <button type="submit">Post</button>
     </form>
 
+    <p id="timeline-error" class="timeline-error" role="alert" hidden></p>
+
     <div id="timeline-posts" class="timeline-posts"></div>
 </main>
 {% endblock %}
@@ -19,6 +21,16 @@
 <script>
     const form = document.getElementById('timeline-form');
     const postsEl = document.getElementById('timeline-posts');
+    const errorEl = document.getElementById('timeline-error');
+
+    function showError(message) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+    }
+
+    function clearError() {
+        errorEl.hidden = true;
+    }
 
     // gravatar uses a hash of the (trimmed, lowercased) email.
     // browsers can do sha-256 natively, and gravatar accepts sha-256 hashes.
@@ -76,10 +88,20 @@
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        await fetch('/api/timeline_post', {
+        clearError();
+        const res = await fetch('/api/timeline_post', {
             method: 'POST',
             body: new URLSearchParams(new FormData(form))
         });
+        // 429 = nginx rate limit
+        if (res.status === 429) {
+            showError("You're posting too fast. Please wait a minute and try again.");
+            return;
+        }
+        if (!res.ok) {
+            showError(await res.text() || 'Something went wrong. Please try again.');
+            return;
+        }
         form.reset();
         loadPosts();
     });
