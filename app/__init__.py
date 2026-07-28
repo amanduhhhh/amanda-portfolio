@@ -60,6 +60,12 @@ current_work = [
 
 experiences = [
     {
+        "role": "Software Engineer",
+        "org": "Shopify",
+        "dates": "Incoming Fall 2026",
+        "description": "Building systems for the world's leading e-commerce platform!",
+    },
+    {
         "role": "Production Engineering",
         "org": "Meta & Major League Hacking",
         "dates": "Jun 2026 – Present",
